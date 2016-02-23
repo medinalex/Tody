@@ -84,13 +84,16 @@
     <p>Executing a stored procedure named <b>getAllClientsByDepartment</b> with a parameter named <b>Department</b></p>
 <pre>
 <code class="csharp hljs">  
+ //get connection string from webconfig
+  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  
   //declare string value for the parameter
   string strDepartment = "Accounting"; 
   
   //declare an array of sql parameters
   SqlParameter[] arrParameters = { new SqlParameter("@department", strDepartment) };
   
-  Tody sqldb = new Tody(ConfigurationManager.ConnectionStrings["MyDataBase"].ToString());
+  Tody sqldb = new Tody(sqlconnection);
   sqldb.OpenDb();
   
   //if connection to database was good then execute stored procedure. 
@@ -106,13 +109,16 @@
     <p>Executing a stored procedure named <b>getMovieByTypeYear</b> with two parameters <b>Category</b> and <b>Year</b>. Then loop the resulting records</p>
 <pre>
 <code class="csharp hljs">
+   //get connection string from webconfig
+  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  
   //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
       new SqlParameter("@Category", "Comedy"),
       new SqlParameter("@Year","2015") 
   };
   
-  Tody sqldb = new Tody(ConfigurationManager.ConnectionStrings["MyDataBase"].ToString());
+  Tody sqldb = new Tody(sqlconnection);
   sqldb.OpenDb();
   
   if(sqldb.IsDbOkay())
@@ -150,7 +156,7 @@
 </tr>
 <tr>
 <td>ExecNonQuery</td>
-<td><ul><li>int timeout</li><li>string query</li><li>SqlParameter[] parameters</li></ul>s</td>
+<td><ul><li>int timeout</li><li>string query</li><li>SqlParameter[] parameters</li></ul></td>
 <td></td>
 <td>Use to execute none query command</td>
 </tr>
