@@ -39,10 +39,10 @@ Executing a stored procedure **getAllDepartments** its has no parameter.
   string stored_procedure_name = "getAllDepartments";
   
   //Declare Tody object
-  Tody sqldb = new Tody(sqlconnection);
+  Tody sqldb = new Tody();
     
   //open database
-  sqldb.OpenDb();
+  sqldb.OpenDb(sqlconnection);
   
   //if connection to database was good then execute stored procedure. 
   if(sqldb.IsDbOkay())  
