@@ -7,7 +7,6 @@
   //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
 
-  //Tody object
   Tody sqldb = new Tody(sqlconnection);
   
   //open database
@@ -20,7 +19,6 @@
   //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
 
-  //Tody object
   Tody sqldb = new Tody();
   
   //open database
@@ -41,7 +39,6 @@ Returns true if connection to database was good.
   //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
 
-  //Tody object
   Tody sqldb = new Tody();
   
   //open database
@@ -74,7 +71,6 @@ Executing a sql query with no parameter.
      sqldb.ExecQuery(timeout, query);  
      
    sqldb.CloseDb();
-
 ```
 ###Executing a stored procedure no parameters
 
@@ -87,7 +83,6 @@ Executing a stored procedure named **getAllDepartments** but without parameters.
    // stored procedure name
   string stored_procedure_name = "getAllDepartments";
   
-  //Declare Tody object
   Tody sqldb = new Tody();
   
   //if connection to database was good then execute query
@@ -95,7 +90,6 @@ Executing a stored procedure named **getAllDepartments** but without parameters.
       sqldb.ExecStoredProcedure(stored_procedure_name);
       
   sqldb.CloseDb();
-
 ```
 ###Executing a stored procedure with one parameter
 
@@ -112,18 +106,13 @@ Executing a stored procedure named **getAllClientsByDepartment** with a paramete
   //declare an array of sql parameters
   SqlParameter[] arrParameters = { new SqlParameter("@department", strDepartment) };
   
-  //Declare Tody object
   Tody sqldb = new Tody();
-  
-  //open database
-  sqldb.OpenDb(sqlconnection);
-  
+    
   //if connection to database was good then execute query
   if(sqldb.OpenDb(sqlconnection).IsDbOkay())
       sqldb.ExecStoredProcedure(timeout, "getAllClientsByDepartment", arrParameters);  
       
-  sqldb.CloseDb();  
-
+  sqldb.CloseDb(); 
 ```
 
 ###Executing a stored procedure with two parameters
@@ -139,17 +128,14 @@ Executing a stored procedure named **getMovieByTypeYear** with two parameters **
       new SqlParameter("@Year", "2015") 
   };
   
-  //Declare Tody object
   Tody sqldb = new Tody();
   
   //if connection to database was good then execute query
   if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
      sqldb.ExecStoredProcedure(10, "getMovieByTypeYear", arrParameters);    
        
-   sqldb.CloseDb();            
-  
+   sqldb.CloseDb();          
 ```
-
 ###Executing stored procedure & loop the resulting records.
 
 Executing a stored procedure named **getMovieByTypeYear** with two parameters and then loop the resulting records.
@@ -163,7 +149,6 @@ Executing a stored procedure named **getMovieByTypeYear** with two parameters an
       new SqlParameter("@Year", "2015") 
   };
   
-  //Declare Tody object
   Tody sqldb = new Tody();
   
   //if connection to database was good then execute query

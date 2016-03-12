@@ -29,7 +29,56 @@
           <h1>Tody</h1>
           <p><b>Tody</b> is a C# class library to connect to a SQL database and execute stored procedures and/or other sql queries.</p>
     <h1>Usage</h1>
-    <h2>Example One</h2>
+    <h2>Open Data Base</h2>
+<pre>
+<code class="csharp hljs">
+//get connection string from webconfig
+sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+		
+Tody sqldb = new Tody(sqlconnection);
+		
+//open database
+sqldb.OpenDb();
+</code>
+</pre>
+<h2>Also open Data Base</h2>
+<pre>
+<code class="csharp hljs">
+//get connection string from webconfig
+sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+		
+Tody sqldb = new Tody(sqlconnection);
+		
+//open database
+sqldb.OpenDb();
+</code>
+</pre>
+<h2>Close Data Base</h2>
+<pre>
+<code class="csharp hljs">
+//open database
+sqldb.CloseDb();
+</code>
+</pre>
+<h2>Use IsDbOkay() method</h2>
+<p>Returns true if connection to database was good.</p>
+<pre>
+<code class="csharp hljs">
+  //get connection string from webconfig
+  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+
+ Tody sqldb = new Tody();
+
+  //open database
+  sqldb.OpenDb(sqlconnection);  
+
+  if(sqldb.IsDbOkay())
+  {
+    //do something
+  }   
+</code>
+</pre>
+<h2>Executing a sql query</h2>
     <p>Executing a sql query with no parameter</p>
     <pre>
 <code class="csharp hljs">
@@ -39,25 +88,19 @@
   string query = "Select top 10 * from tblPets";
   
   //timeout value in seconds
-  int timeout=10;
+  int timeout=5;
+
+  Tody sqldb = new Tody();
   
-  //Declare Tody object
-  Tody sqldb = new Tody(sqlconnection);
-  
-  //open database
-  sqldb.OpenDb();
-  
-  //if connection to database was good then execute query. 
-  if(sqldb.IsDbOkay())
-  {
-     sqldb.ExecQuery(timeout, query);
-  }
-     
-     sqldb.CloseDb();
+  //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+     sqldb.ExecQuery(timeout, query);  
+
+   sqldb.CloseDb();
 </code>
     </pre>
-    <h2>Example Two</h2>
-    <p>Executing a stored procedure <b>getAllDepartments</b> its has no parameter.</p>
+    <h2>Executing a stored procedure no parameters</h2>
+    <p>Executing a stored procedure named <b>getAllDepartments</b> but without parameters.</p>
     <pre>
 <code class="csharp hljs">
   //get connection string from webconfig
@@ -65,22 +108,17 @@
 
    // stored procedure name
   string stored_procedure_name = "getAllDepartments";
+   
+  Tody sqldb = new Tody();
   
-  //timeout value in seconds
-  int timeout=10;
-     
-  Tody sqldb = new Tody(sqlconnection);
-  sqldb.OpenDb();
-  
-  //if connection to database was good then execute stored procedure. 
-  if(sqldb.IsDbOkay())
-  {
-      sqldb.ExecStoredProcedure(timeout, stored_procedure_name);
-  }      
-      sqldb.CloseDb();
+   //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+      sqldb.ExecStoredProcedure(stored_procedure_name);
+
+  sqldb.CloseDb();
 </code>  
 </pre>
-    <h2>Example Three</h2>
+    <h2>Executing a stored procedure with one parameter</h2>
     <p>Executing a stored procedure named <b>getAllClientsByDepartment</b> with a parameter named <b>Department</b></p>
 <pre>
 <code class="csharp hljs">  
@@ -93,53 +131,74 @@
   //declare an array of sql parameters
   SqlParameter[] arrParameters = { new SqlParameter("@department", strDepartment) };
   
-  Tody sqldb = new Tody(sqlconnection);
-  sqldb.OpenDb();
+  Tody sqldb = new Tody();
   
-  //if connection to database was good then execute stored procedure. 
-  if(sqldb.IsDbOkay())
-  { 
-      sqldb.ExecStoredProcedure(10, "getAllClientsByDepartment", arrParameters);
-  }    
-  
+ //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())
+      sqldb.ExecStoredProcedure(timeout, "getAllClientsByDepartment", arrParameters);  
+
   sqldb.CloseDb();  
 </code>
 </pre>
- <h2>Example Four</h2>
-    <p>Executing a stored procedure named <b>getMovieByTypeYear</b> with two parameters <b>Category</b> and <b>Year</b>. Then loop the resulting records</p>
+ <h2>Executing a stored procedure with two parameters</h2>
+    <p>Executing a stored procedure named <b>getMovieByTypeYear</b> with two parameters <b>Category</b> and <b>Year</b>.</p>
 <pre>
 <code class="csharp hljs">
-   //get connection string from webconfig
+       //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
-  
-  //declare an array of sql parameters
+
+   //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
       new SqlParameter("@Category", "Comedy"),
-      new SqlParameter("@Year","2015") 
+      new SqlParameter("@Year", "2015") 
   };
-  
-  Tody sqldb = new Tody(sqlconnection);
-  sqldb.OpenDb();
-  
-  if(sqldb.IsDbOkay())
-  {  
-      movie = sqldb.ExecStoredProcedure(10, "getMovieByTypeYear", arrParameters);   
-     
-       if(db.IsQuerySuccess())
-        { 
-          //get data set
-          DataSet movie = db.GetDataSet();
-          
-          //loop each row
-          foreach(DataRow dr in movie.Tables[0].Rows)
-              Console.Write(" Movie "+ dr["movie_name_column"]);
-        }
-   }
-   
-  sqldb.CloseDb();  
+
+  Tody sqldb = new Tody();
+
+  //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+     sqldb.ExecStoredProcedure(10, "getMovieByTypeYear", arrParameters);    
+
+   sqldb.CloseDb();      
 </code>
 </pre>
-<h1>Tody Methods</h1>
+<h2>Executing stored procedure & loop the resulting records.</h2>
+<p>Executing a stored procedure named getMovieByTypeYear with two parameters and then loop the resulting records.</p>
+<pre>
+	<code>
+		    //get connection string from webconfig
+  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+
+   //declare an array of sql parameters
+  SqlParameter[] arrParameters = { 
+      new SqlParameter("@Category", "Comedy"),
+      new SqlParameter("@Year", "2015") 
+  };
+
+  //Declare Tody object
+  Tody sqldb = new Tody();
+
+  //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+     sqldb.ExecStoredProcedure(10, "getMovieByTypeYear", arrParameters);    
+
+  //if query executed with no errors
+  if(sqldb.IsQuerySuccess())
+     { 
+          //get first data table
+          DataTable movieTable = sqldb.GetFirstDataTable();
+
+          //loop each row
+          foreach(DataRow dr in movieTable.Rows)              
+              Console.Write(dr["column_name"]);                        
+    }   
+
+   sqldb.CloseDb();  
+	</code>
+</pre>
+<h2>Installation</h2>
+<p>Download <b><a href="http://medinalex.github.io/Tody/Tody.dll">Tody.dll</a></b> and then create the reference on the Visual Studio project.</p>
+<h1>Methods</h1>
 <table><thead>
 <tr>
 <th><b>Methods</b></th>
@@ -211,6 +270,18 @@
     <td></td>
     <td>boolean</td>
     <td>Verify if database is open</td>
+</tr>
+<tr>
+    <td>GetDataTableByIndex()</td>
+    <td>int index</td>
+    <td>DataTable</td>
+    <td>Return a datatable created after calling the methods ExecStoredProcedure and ExecQuery but using index number of the table in case the stored procedure retun more than one.</td>
+</tr>
+<tr>
+    <td>GetFirstDataTable()</td>
+    <td></td>
+    <td>DataTable</td>
+    <td>Return the firts datatable created after calling the methods ExecStoredProcedure and ExecQuery.</td>
 </tr>
 </tbody>
 </table>
