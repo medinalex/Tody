@@ -144,10 +144,10 @@ sqldb.CloseDb();
     <p>Executing a stored procedure named <b>getMovieByTypeYear</b> with two parameters <b>Category</b> and <b>Year</b>.</p>
 <pre>
 <code class="csharp hljs">
-       //get connection string from webconfig
+  //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
 
-   //declare an array of sql parameters
+  //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
       new SqlParameter("@Category", "Comedy"),
       new SqlParameter("@Year", "2015") 
@@ -165,8 +165,8 @@ sqldb.CloseDb();
 <h2>Executing stored procedure & loop the resulting records.</h2>
 <p>Executing a stored procedure named getMovieByTypeYear with two parameters and then loop the resulting records.</p>
 <pre>
-	<code>
-		    //get connection string from webconfig
+<code>
+  //get connection string from webconfig
   sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
 
    //declare an array of sql parameters
