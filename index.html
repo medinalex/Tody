@@ -44,8 +44,7 @@ sqldb.OpenDb();
 <h2>Also open Data Base</h2>
 <pre>
 <code class="csharp hljs">
-//get connection string from webconfig
-sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 		
 Tody sqldb = new Tody(sqlconnection);
 		
@@ -64,8 +63,7 @@ sqldb.CloseDb();
 <p>Returns true if connection to database was good.</p>
 <pre>
 <code class="csharp hljs">
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+   string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
  Tody sqldb = new Tody();
 
@@ -82,8 +80,7 @@ sqldb.CloseDb();
     <p>Executing a sql query with no parameter</p>
     <pre>
 <code class="csharp hljs">
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
   string query = "Select top 10 * from tblPets";
   
@@ -103,8 +100,7 @@ sqldb.CloseDb();
     <p>Executing a stored procedure named <b>getAllDepartments</b> but without parameters.</p>
     <pre>
 <code class="csharp hljs">
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
    // stored procedure name
   string stored_procedure_name = "getAllDepartments";
@@ -122,8 +118,7 @@ sqldb.CloseDb();
     <p>Executing a stored procedure named <b>getAllClientsByDepartment</b> with a parameter named <b>Department</b></p>
 <pre>
 <code class="csharp hljs">  
- //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
   
   //declare string value for the parameter
   string strDepartment = "Accounting"; 
@@ -144,8 +139,7 @@ sqldb.CloseDb();
     <p>Executing a stored procedure named <b>getMovieByTypeYear</b> with two parameters <b>Category</b> and <b>Year</b>.</p>
 <pre>
 <code class="csharp hljs">
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
   //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
@@ -166,8 +160,7 @@ sqldb.CloseDb();
 <p>Executing a stored procedure named getMovieByTypeYear with two parameters and then loop the resulting records.</p>
 <pre>
 <code>
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
    //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
