@@ -1,4 +1,4 @@
-**Tody** is a C# class library to connect to a SQL database and execute stored procedures and/or other sql queries.
+**Tody** is a C# class library to connect to a SQL database and execute stored procedures and/or other sql queries for.NET.
 
 ## Usage
 ###Open Data Base
