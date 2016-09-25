@@ -16,8 +16,7 @@
 ###Also Open Data Base
 
 ```cs
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword" providerName="System.Data.SqlClient";
 
   Tody sqldb = new Tody();
   
