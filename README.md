@@ -35,8 +35,7 @@
 
 Returns true if connection to database was good. 
 ```cs
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+   string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
   Tody sqldb = new Tody();
   
@@ -76,8 +75,7 @@ Executing a sql query with no parameter.
 Executing a stored procedure named **getAllDepartments** but without parameters.
 ```cs
 
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+    string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
    // stored procedure name
   string stored_procedure_name = "getAllDepartments";
@@ -94,8 +92,7 @@ Executing a stored procedure named **getAllDepartments** but without parameters.
 
 Executing a stored procedure named **getAllClientsByDepartment** with a parameter named **Department**.
 ```cs
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+   string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
   
   //declare string value for the parameter
   string strDepartment = "Accounting"; 
@@ -118,8 +115,7 @@ Executing a stored procedure named **getAllClientsByDepartment** with a paramete
 
 Executing a stored procedure named **getMovieByTypeYear** with two parameters **Category** and **Year**.
 ```cs
-    //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+      string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
   
    //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
@@ -139,8 +135,7 @@ Executing a stored procedure named **getMovieByTypeYear** with two parameters **
 
 Executing a stored procedure named **getMovieByTypeYear** with two parameters and then loop the resulting records.
 ```cs
-    //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+     string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
   
    //declare an array of sql parameters
   SqlParameter[] arrParameters = { 
