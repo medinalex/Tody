@@ -53,8 +53,7 @@ Returns true if connection to database was good.
 Executing a sql query with no parameter.
 ```cs
 
-  //get connection string from webconfig
-  sqlconnection = ConfigurationManager.ConnectionStrings["MyDataBase"].ToString();
+   string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
   string query = "Select top 10 * from tblPets";
   
