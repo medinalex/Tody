@@ -16,7 +16,7 @@
 ###Also Open Data Base
 
 ```cs
-  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword" providerName="System.Data.SqlClient";
+  string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
 
   Tody sqldb = new Tody();
   
