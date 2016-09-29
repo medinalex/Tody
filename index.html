@@ -189,6 +189,32 @@ sqldb.CloseDb();
    sqldb.CloseDb();  
 	</code>
 </pre>
+<h2>Executing a query and loop the resulting records</h2>
+<pre>
+<code>
+ string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
+ 
+ string query = "Select top 10 * from tblPets";
+ 
+ Tody sqldb = new Tody();
+
+  //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+     sqldb.ExecQuery(3, query);     
+
+  //if query executed with no errors
+  if(sqldb.IsQuerySuccess())
+     { 
+         //get first data table as List
+          List&lt;DataRow&gt; list = PR_CollegeBoard_BI_ODS.GetFirstDataTableAsList(); 
+
+          //loop list
+          list.ForEach(dr => Console.WriteLine(dr["columnname"]));                       
+    }   
+
+   sqldb.CloseDb();  
+</code>
+</pre>
 <h2>Installation</h2>
 <p>Download <b><a href="https://github.com/medinalex/Tody/archive/gh-pages.zip">Tody.dll</a></b> and then create the reference on the Visual Studio project.</p>
 <h3>How to: Add and Remove References in Visual Studio (C#)</h3>
@@ -281,14 +307,20 @@ sqldb.CloseDb();
 <tr>
     <td>GetDataTableByIndex()</td>
     <td>int index</td>
-    <td>DataTable</td>
+	<td><a href='https://msdn.microsoft.com/en-us/library/system.data.datatable(v=vs.110).aspx'>DataTable</a></td>
     <td>Return a datatable created after calling the methods ExecStoredProcedure and ExecQuery but using index number of the table in case the stored procedure retun more than one.</td>
 </tr>
 <tr>
     <td>GetFirstDataTable()</td>
     <td></td>
-    <td>DataTable</td>
+	<td><a href='https://msdn.microsoft.com/en-us/library/system.data.datatable(v=vs.110).aspx'>DataTable</a></td>
     <td>Return the firts datatable created after calling the methods ExecStoredProcedure and ExecQuery.</td>
+</tr>
+<tr>
+    <td>GetFirstDataTableAsList()</td>
+    <td></td>
+    <td><a href='https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx'>List</a></td>
+    <td>Return the firts datatable as a list that was created after calling the methods ExecStoredProcedure or ExecQuery.</td>
 </tr>
 </tbody>
 </table>
