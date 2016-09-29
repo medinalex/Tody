@@ -210,6 +210,6 @@ IsQuerySuccess() | | bool | Verify is there was no error
 IsDbOkay() | | bool | Verify if connection to server and database was a success
 IsDbOpen() | | bool | Verify if database is open
 GetDataTableByIndex() | int index | DataTable | Return a datatable created after calling the methods ExecStoredProcedure or ExecQuery but using index number of the table in case the stored procedure retun more than one.
-GetFirstDataTable() |  | DataTable | Return the firts datatable created after calling the methods ExecStoredProcedure and ExecQuery.
-GetFirstDataTableAsList() |  | List<DataRow> | Return the firts datatable as a list that was created after calling the methods ExecStoredProcedure or ExecQuery.
+GetFirstDataTable() |  | [DataTable](https://msdn.microsoft.com/en-us/library/system.data.datatable(v=vs.110).aspx) | Return the firts datatable created after calling the methods ExecStoredProcedure and ExecQuery.
+GetFirstDataTableAsList() |  | [List](https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx) | Return the firts datatable as a list that was created after calling the methods ExecStoredProcedure or ExecQuery.
 
