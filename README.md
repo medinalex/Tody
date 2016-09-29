@@ -163,6 +163,33 @@ Executing a stored procedure named **getMovieByTypeYear** with two parameters an
   
 ```
 
+###Executing a query & loop the resulting records.
+
+```cs
+     string sqlconnection = "Persist Security Info=False;Data Source=SQLSERVER;Initial Catalog=MyDataBase;User Id=myusername;Password=mypassword";
+  
+  string query = "Select top 10 * from tblPets";
+  
+  Tody sqldb = new Tody();
+  
+  //if connection to database was good then execute query
+  if(sqldb.OpenDb(sqlconnection).IsDbOkay())  
+     sqldb.ExecQuery(3, query);  
+  
+  //if query executed with no errors
+  if(sqldb.IsQuerySuccess())
+     { 
+          //get first data table as List
+          List<DataRow> list = PR_CollegeBoard_BI_ODS.GetFirstDataTableAsList(); 
+          
+          //loop list
+          list.ForEach(dr => Console.WriteLine(dr["columnname"]));
+    }   
+   
+   sqldb.CloseDb();            
+  
+```
+
 ## Installation
 
 Download [Tody.dll](http://medinalex.github.io/Tody/Tody.dll) and then create the reference on the Visual Studio project.
@@ -182,6 +209,7 @@ GetAllDataTables() | | [DataTableCollection](https://msdn.microsoft.com/en-us/li
 IsQuerySuccess() | | bool | Verify is there was no error
 IsDbOkay() | | bool | Verify if connection to server and database was a success
 IsDbOpen() | | bool | Verify if database is open
-GetDataTableByIndex() | int index | DataTable | Return a datatable created after calling the methods ExecStoredProcedure and ExecQuery but using index number of the table in case the stored procedure retun more than one.
+GetDataTableByIndex() | int index | DataTable | Return a datatable created after calling the methods ExecStoredProcedure or ExecQuery but using index number of the table in case the stored procedure retun more than one.
 GetFirstDataTable() |  | DataTable | Return the firts datatable created after calling the methods ExecStoredProcedure and ExecQuery.
+GetFirstDataTableAsList() |  | List<DataRow> | Return the firts datatable as a list that was created after calling the methods ExecStoredProcedure or ExecQuery.
 
