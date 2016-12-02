@@ -206,7 +206,7 @@ sqldb.CloseDb();
   if(sqldb.IsQuerySuccess())
      { 
          //get first data table as List
-          List&lt;DataRow&gt; list = PR_CollegeBoard_BI_ODS.GetFirstDataTableAsList(); 
+          List&lt;DataRow&gt; list = sqldb.GetFirstDataTableAsList(); 
 
           //loop list
           list.ForEach(dr => Console.WriteLine(dr["columnname"]));                       
