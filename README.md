@@ -180,7 +180,7 @@ Executing a stored procedure named **getMovieByTypeYear** with two parameters an
   if(sqldb.IsQuerySuccess())
      { 
           //get first data table as List
-          List<DataRow> list = PR_CollegeBoard_BI_ODS.GetFirstDataTableAsList(); 
+          List<DataRow> list = sqldb.GetFirstDataTableAsList(); 
           
           //loop list
           list.ForEach(dr => Console.WriteLine(dr["columnname"]));
